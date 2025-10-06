@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+     <link rel="icon" type="images/png" href="images/blackbglogo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Men</title>
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <div class="outer-navbar">
+      <div class="navbar">
+          <div onclick="sidebar()" class="nav-left">
+              <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="nav-middle">
+              <img onclick="window.location.href='Homepage.html'" src="images/whitebglogo.png" style="z-index: 5;" height="80px">
+          </div>
+          <div onclick="cartBar()" class="nav-right">
+            <div class="cartLogo">
+                 <i class="fa-solid fa-cart-shopping">
+                  <p class="cartItems">0</p>
+                 </i>
+                 
+            </div>
+             
+          </div>
+      </div>
+    </div>
+
+      <div class="side-bar">
+        <div class="side-buttons">
+          <div onclick="darkMode()" class="darkModeDiv">
+            <i  class="fa-solid fa-moon"></i>
+          </div>
+            <button onclick="window.location.href=`Menpage.html`">Men</button>
+           <button onclick="window.location.href=`Womenpage.html`">Women</button>
+        </div>
+      </div>
+      <div class="cart-bar">
+        <div class="cart-bar-list">
+
+
+        
+
+          
+          
+
+
+        </div>
+        <div class="cart-bar-bottom">
+          <button onclick="checkOut()">CheckOut</button>
+        </div>
+      </div>
+      <div class="mainbody">
+          <div class="caurosel">
+            <div class="cauroselPic">
+              <img src="images/kidsbanneredited.jpg" width="100%">
+            </div>
+              
+              <div class="caurosel-kids-text">Kids</div>
+          </div>
+          <div class="products-grid">
+
+      
+
+          </div>
+      </div>
+      <div class="popup-div">
+        
+      </div>
+      <script>
+        darkModeCounter=0;
+        function darkMode() {
+          if (darkModeCounter==0) {darkModeCounter=1;activateDarkMode()}
+          else {darkModeCounter=0;deActivateDarkMode()}
+        }
+       function activateDarkMode() {
+        document.querySelector('body').classList.add('darkBody');
+        document.querySelector('.outer-navbar').classList.add("navbarDark");
+        document.querySelector('.side-bar').classList.add("sidebarDark");
+        document.querySelector('.cart-bar').classList.add("dark-cart-bar");
+        document.querySelector('.side-buttons').classList.add("darksidebar-buttons");
+        document.querySelector('.nav-middle').innerHTML=`<img onclick="window.location.href='Homepage.html'" src="images/blackbglogo.png" style="z-index: 5;" height="80px">`
+       }
+       function deActivateDarkMode() {
+        document.querySelector('body').classList.remove('darkBody');
+        document.querySelector('.outer-navbar').classList.remove("navbarDark");
+        document.querySelector('.side-bar').classList.remove("sidebarDark");
+         document.querySelector('.cart-bar').classList.remove("dark-cart-bar");
+        document.querySelector('.side-buttons').classList.remove("darksidebar-buttons");
+        document.querySelector('.nav-middle').innerHTML=`<img onclick="window.location.href='Homepage.html'" src="images/whitebglogo.png" style="z-index: 5;" height="80px">`
+       }
+
+
+       sideBarCounter=0;
+       function sidebar() {
+        if (sideBarCounter==0) {sideBarCounter=1;activeSidebar()}
+        else {sideBarCounter=0;deActiveSidebar()}
+       }
+       function activeSidebar() {
+        document.querySelector('.side-bar').classList.add('sidebarActive')
+       }
+       function deActiveSidebar() {
+        document.querySelector('.side-bar').classList.remove('sidebarActive');
+        console.log("De")
+       }
+       
+       cartBarCounter=0;
+       function cartBar() {
+        if (cartBarCounter==0) {cartBarCounter=1;activateCart()}
+        else {cartBarCounter=0;deActiveCart()}
+       }
+       function activateCart() {
+        document.querySelector('.cart-bar').classList.add("cartBarActive");
+       }
+       function deActiveCart() {
+        document.querySelector('.cart-bar').classList.remove('cartBarActive');
+       }
+
+       allProducts=[
+        {
+          name:"Blue Jacket",
+          image:"DarkBlueJacket.png",
+          price:120,
+          quantity:0
+        },
+        {
+          name:"Red Shirt",
+          image:"menshirt3.png",
+          price:70, 
+          quantity:0,
+          
+        },
+        {
+          name:"Brown Jacket",
+          image:"Brownjacket.png",
+          price:120,
+          quantity:0,
+          
+        }
+        
+       ];
+       
+       renderProducts()
+       function renderProducts() {
+        document.querySelector('.products-grid').innerHTML=``;
+        for (i=0;i<allProducts.length;i++) {
+          document.querySelector('.products-grid').innerHTML+=`
+          <div class="card">
+              <div class="cardImage"> <img src="images/${allProducts[i].image}" height="180px"> </div>
+              <div class="cardName"> ${allProducts[i].name} </div>
+              <div class="cardPrice">${allProducts[i].price}$</div>
+              
+              <div class="cardButton"> <button onclick="addToCart(${i})">Add To Cart</button> </div>
+            </div>
+          `;
+        }
+       }
+       
+       cartProducts=[];
+       function addToCart(i) {
+        let shouldAdd=true;
+        cartProducts=(JSON.parse(localStorage.getItem("cartProducts")))||[];
+        for (j=0;j<cartProducts.length;j++) {
+       
+          if (cartProducts[j].name==allProducts[i].name) { shouldAdd=false;cartProducts[j].quantity+=1 ;break}
+        }
+        if (shouldAdd) {cartProducts.push(allProducts[i]);cartProducts[j].quantity=1}
+        
+        localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
+        renderCart();
+        console.log(cartProducts)
+       } 
+       renderCart()
+       function renderCart() {
+        document.querySelector('.cart-bar-list').innerHTML=``;
+        cartProducts=[];
+        cartProducts=(JSON.parse(localStorage.getItem("cartProducts")))||[];
+        for (i=0;i<cartProducts.length;i++) {
+        document.querySelector('.cart-bar-list').innerHTML+=`
+        
+        <div class="cart-card">
+            <div class="cart-card-img"> <img src="images/${cartProducts[i].image}" height="150px"> </div>
+            <div class="cart-card-name"> ${cartProducts[i].name} </div>
+            <div class="cart-card-price">${cartProducts[i].price} $</div>
+            
+            <div class="cartQuantityButtons"> <button onclick="reduceCartItem(${i})">- </button>  <div class="cardQuantity"><strong>${cartProducts[i].quantity} </strong> </div> <button onclick="addCartItem(${i})">+</button>
+            <div class="cart-card-button"> <button onclick="removeCartItem(${i})">Remove</button> </div>
+          </div>
+
+        `;
+       }
+       document.querySelector('.cartItems').innerHTML=cartProducts.length
+      }
+      function reduceCartItem(i) {
+        cartProducts=[];
+        cartProducts=(JSON.parse(localStorage.getItem("cartProducts")))||[];
+        console.log(cartProducts[i].quantity-=1)
+        if (cartProducts[i].quantity<=0) {cartProducts.splice(i,1);}
+        localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
+        renderCart()
+
+
+      }
+    function addCartItem(i) {
+        cartProducts=[];
+        cartProducts=(JSON.parse(localStorage.getItem("cartProducts")))||[];
+        console.log(cartProducts[i].quantity+=1)
+        if (cartProducts[i].quantity<=0) {cartProducts.splice(i,1);}
+        localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
+        renderCart()
+
+
+      }
+       function removeCartItem(i) {
+        cartProducts=[];
+        cartProducts=(JSON.parse(localStorage.getItem("cartProducts")))||[];
+        cartProducts.splice(i,1);
+        localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
+        renderCart()
+       }
+       function checkOut() {
+        cartProducts=(JSON.parse(localStorage.getItem("cartProducts")))||[];
+        if (cartProducts.length>0) { window.location.href=`Checkout.html`;}
+        else {popup()}
+        
+       
+       }
+
+       cauroselPic()
+       function cauroselPic() {
+        if (window.innerWidth<728) {
+          document.querySelector('.cauroselPic').innerHTML=`<img src="images/kidsBannerVertical.jpg" width="100%">`
+        }
+        else {
+          document.querySelector('.cauroselPic').innerHTML=`<img src="images/kidsbanneredited.jpg" width="100%">`
+
+        }
+       }
+       function popup() {
+        
+        document.querySelector('.popup-div').innerHTML=`<div class="popup">Add At-Least One Item</div>`
+        setTimeout(() => {
+           document.querySelector('.popup-div').innerHTML=``
+        }, 2000);
+       }
+      </script>
+      
+</body>
+</html>

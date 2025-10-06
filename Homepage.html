@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/png" href="images/blackbglogo.png">
+  <title>Home</title>
+  
+   <style>
+   body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition-duration: 0.5s;
+  
+
+    }
+
+    .darkmodeBody {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        background-color:rgb(25, 24, 24) ;
+        color: lightgray;
+        
+      }
+   .navbar {
+            position: fixed;
+            top: 0;
+            left: 0px; right: 0;
+            height: 101px;
+            z-index: 2;
+            background-color: white;
+            border-bottom: 2px solid rgba(128, 128, 128, 0.231);
+            padding-bottom: 10px;
+            backdrop-filter: blur(5px);
+            transition-duration: 0.5s;
+          }
+          .navbar-dark {
+            background-color:   rgb(33, 33, 33);
+          }
+          .logodiv {
+            display: inline;
+          }
+          .buttonsdiv {
+            display: inline;
+            background-color: blue;
+          }
+          .center {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+          
+          }
+          .right {
+            display: flex;
+            justify-content: right;
+            vertical-align: middle;
+            margin-top: -70px;
+            margin-right: 0vh;
+          }
+          .right button {
+            background-color: transparent;
+            color: inherit;
+            height: 50px;
+            width: 120px;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 2.4vh;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.3s;
+            border-radius: 20px;
+          }
+          .right button:hover {
+            background-color: rgba(129, 126, 126, 0.107);
+            
+          }
+          .right button:active {
+            background-color: rgba(129, 126, 126, 0.381);
+            color: inherit;
+          }
+          .darkright-button {
+            background-color: gray;
+          }
+
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.468);
+      font-size: 40px;
+      font-family: Lucida Handwriting;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+      width: 100%;
+    }
+    .mainbody {
+      margin-top: 113px;
+      margin-bottom: 0px;
+
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+    .welcome {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      text-align: center;
+      font-size: 8vh;
+      margin-top: 100px;
+    }
+    .Inputs-div input {
+      width: 60vh;
+      height: 40px;
+      border: none;
+      border-bottom: 1px solid rgb(121, 120, 120);
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      transition: 0.5s;
+      background-color: transparent;
+      color: inherit;
+      
+    }
+    .Inputs-div input:focus {
+      background-color: rgba(128, 128, 128, 0.151);
+      border: 1px  solid gray;
+      outline: none;
+      transition-duration: 0.4s;
+      color: inherit;
+    }
+    .Submit-button {
+      margin-top: 20px;
+      height: 40px;
+      width: 140px;
+      background-color: rgb(30, 30, 30);
+      color: white;
+      font-weight: bold;
+      border: none;
+      transition: 0.5s;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 1px solid whitesmoke;
+    }
+    
+    .Submit-button:hover {
+      background-color: rgb(59, 58, 58);
+    }
+    .Submit-button:active {
+      background-color: rgb(100, 99, 99); 
+    }
+
+    .darkmodediv {
+      position: fixed;margin-top: 20px;margin-left: 20px;padding: 10px;border-radius: 10px;cursor: pointer;
+    }
+    .darkmodediv:hover {
+      background-color: rgba(128, 128, 128, 0.201);
+    }
+    .darkmodediv img {
+      height: 40px;
+    }
+     .result-div {
+      position: fixed;
+                  top: 85%;
+                  right: 43%;
+
+                  backdrop-filter: blur(5px);
+                  z-index: 1000;
+                  font-weight: bold;
+                  padding-left: 4vh;
+                  padding-right: 4vh;
+                  padding-top: 1vh;
+                  padding-bottom: 1vh;
+                  border-radius: 8px;
+                  font-size:2vh;
+                  color: inherit;
+                  width: fit-content;
+                  text-align: center;
+                  max-width: 50vh;
+    }
+    .options {
+            display: flex;
+      flex-direction: row;
+      width: fit-content;
+      width: 100%;
+      
+    
+    }
+    
+    .men  {
+      width: 33.4%;
+      position: relative;
+      transition-duration: 0.5s;
+    }
+    .men:hover {
+      opacity: 80%;
+    }
+    .women {
+      width: 33.3%;
+      position: relative;
+      transition-duration: 0.5s;
+      
+    }
+    .women:hover {
+      opacity: 80%;
+    }
+    .kids {
+      width: 33.3%;
+      position: relative;
+      transition-duration: 0.5s;
+    }
+    .kids:hover {
+      opacity: 80%;
+    }
+     .Green {
+      background-color: green;
+    }
+    .Yellow {
+      background-color: yellow;
+    }
+     .Red {
+      background-color: rgba(255, 0, 0, 0.678);
+      color: white;
+    }
+    @media (max-width:600px) {
+      .navbar img {
+        height: 11vh;
+       
+
+      }
+      
+      .navbar {
+        height: 12vh;
+         padding-top: 20px;
+      }
+       .darkmodediv img {
+      height: 40px;
+    }
+      .mainbody {
+        margin-top: 15vh;
+        height: 80vh;
+      }
+      .Inputs-div input {
+        width: 100%;
+      }
+      .welcome {
+        font-size: 6vh;
+        margin-top: 200px;
+      }
+      .options {
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+      }
+      .kids {
+        width: 100%;
+        
+      }
+      .women {
+        width: 100%;
+      }
+      .men {
+        width: 100%;
+      }
+      .overlay {
+        font-size: 4vh;
+      }
+      .right button {
+        background-color: transparent;
+            height: 30px;
+            width: 90px;
+            margin-top: 10px;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 2vh;
+            border: none;
+            cursor: pointer;
+            transition-duration: 0.3s;
+            border-radius: 20px;
+      }
+      .result-div {
+        top: 85%;
+        left: 30%;
+      }
+    }
+   </style>
+</head>
+<body>
+            <div class="navbar">  
+              <div onclick="darkmode();" class="darkmodediv">
+                  <img src="images/moon.png" >
+              </div>
+          
+            <div class="logodiv">
+
+                <div class="center">
+
+                    <img src="images/whitebglogo.png" height="90px"> 
+                </div>
+
+            </div>
+            <div class="buttonsdiv">
+              
+                <div class="right">
+                    <a style="text-decoration: none;color: inherit;" href="SignIn.html"><button class="right-button">Sign In</button></a>
+
+                </div>
+
+              </div>
+        
+        </div>
+      <div class="mainbody">
+           
+
+
+
+          <div class="center">
+              <div class="options">
+
+               <a href="Kidspage.html"> <div class="kids"> 
+                 <img src="images/kidsection.jpg" width="100%">  
+                  <div class="overlay">
+                     <p class="category">Kids</p>
+                  </div>
+                </a>
+                </div> 
+
+                <div class="women">
+              <a href="Womenpage.html">     <img src="images/womensect.jpg" width="100%"> </a>
+                  <div class="overlay">
+                     <p class="category">Women</p>
+                  </div> </a>
+                </div>
+                <div class="men">
+               <a href="Menpage.html">   <img src="images/mensect.jpg" width="100%">   </a>
+                  <div class="overlay">
+                     <p class="category">Men</p>
+                  </div> </a>
+                </div>
+          </div>
+      <script>
+
+          let userSignedIn=localStorage.getItem("Signed In");
+          console.log(userSignedIn)
+          if (userSignedIn=="true") {
+        let userSignupName=localStorage.getItem("User Name");
+         let userSignupEmail=localStorage.getItem("User Email");
+         let userSignupPassword=localStorage.getItem("User Password");
+         let userSignupPassword2=localStorage.getItem("User 2nd Password");
+         console.log("Email:"+userSignupEmail);
+         console.log("Password"+userSignupPassword);
+        
+         
+         
+
+         
+         
+
+         if (userSignupEmail!=="") {
+          console.log(userSignupName);
+          document.querySelector('.right').innerHTML=`<button class="right-button">${userSignupName}</button>`
+
+         }
+         else {
+                    document.querySelector('.right').innerHTML=`<a href"SignUp.html"> <button class="right-button">Sign In</button>`
+
+         }
+        }
+        let counter=0;
+        function darkmode() {
+          console.log("MEAo");
+          if (counter==0) {counter+=1;activateDarkMode();}
+          else {counter-=1;deActivateDarkMode();}
+        }
+        function activateDarkMode() {
+           document.querySelector('.center').innerHTML=`
+          <img src="images/blackbglogo.png" height="90px"> 
+          `;
+          document.querySelector('.darkmodediv').innerHTML=`
+          <img src="images/whitemoon.png" >`;
+          
+          document.querySelector("body").classList.add("darkmodeBody");
+          document.querySelector('.navbar').classList.add('navbar-dark');
+
+         
+        }
+        function deActivateDarkMode() {
+          document.querySelector("body").classList.remove("darkmodeBody");
+           document.querySelector('.center').innerHTML=`
+          <img src="images/whitebglogo.png" height="90px"> 
+          `;
+          document.querySelector('.darkmodediv').innerHTML=`
+          <img src="images/moon.png" >`;
+          document.querySelector('.navbar').classList.remove('navbar-dark');
+        }
+
+      </script>
+</body>
+</html>

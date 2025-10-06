@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/png" href="images/blackbglogo.png">
+  <title>Receipt</title>
+  <style>
+     body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
+      .darkBody {
+      background: rgb(30, 30, 30);
+    color: white;
+    }
+    .navbar {
+      position: fixed;
+      top: 0; left: 0 ; right: 0;
+      height: 120px;
+      background: rgb(37, 37, 37);
+      display: flex;
+      justify-content: space-between;
+    }
+    .navbar .left {
+      display: inline;
+      margin:2vh 0 2vh 2vh;
+      border-radius: 50%;
+      padding: 10px;
+      transition-duration: 0.4s;
+    }
+    .navbar .left:hover   {
+      background: rgba(128, 128, 128, 0.395);
+    }
+    .navbar .right {
+      display: inline;
+      margin: 5vh 3vh 4vh 4vh;
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+      transition-duration: 0.4s;
+    }
+    .navbar .right:hover {
+      background: rgba(128, 128, 128, 0.498);
+    }
+    .mainbody {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+      margin-top: 120px;
+    }
+    .title-text {
+      font-size: 8vh;
+      text-align: center;
+      font-weight: bolder;
+      color: inherit;
+    }
+    .receipt-div {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid gray;
+      background: rgba(6, 5, 5, 0.171);
+      margin: 10px;
+      padding: 5px;
+    }
+    .img-div {
+      text-align: center;
+      margin: 5px;
+      
+    }
+
+    .card-div {
+      display: flex;
+      flex-direction: column;
+    }
+    .card {
+      margin: 5px;
+      border: 1px solid gray;
+       display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: rgba(116, 114, 114, 0.13);
+    }
+    .card-img {
+      border: 1px solid gray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+    }
+    .card-name-quantity {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid gray;
+      background: transparent;
+      padding: 2vh;
+    }
+    .card-price {
+      border: 1px solid gray;
+      background: transparent;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: large;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+    .quantity-price-div {
+      border: 1px solid gray;
+      margin: 10px;
+      padding: 5px;
+      background: rgba(121, 120, 120, 0.285);
+      border-radius: 5px;
+      min-width: 15%;
+      text-align: center;
+    }
+    .name-address-div {
+      background: rgba(121, 120, 120, 0.285);
+      display: inline;
+      border: 1px solid gray;
+      width: fit-content;
+      padding:0 5vh 0 5vh;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+    <div class="navbar">
+        <div onclick="window.location.href='Homepage.html'" class="left"> <img src="images/blackbglogo.png" height="75px"> </div>
+        <div onclick="darkMode()" class="right"> <img src="images/whitemoon.png" height="40px"> </div>
+    </div>
+    <div class="mainbody">
+        <p class="title-text">Thanks For Shopping</p>
+        
+    </div>
+    <div class="receipt-div">
+
+    </div>
+    <script>
+      
+      render();
+
+      function render() {
+        document.querySelector('.receipt-div').innerHTML='';
+        let user=JSON.parse(localStorage.getItem("confirmedCart"));
+        console.log(user[0].userCart)
+        document.querySelector('.receipt-div').innerHTML=`
+      
+            <div class="img-div"><img src="/images/whitebglogo.png" height="80px"> </div>
+            <div class="name-address-div">
+                <p class="name">Name : <span style="font-weight: bold;">${user[1].userName}</span></p>
+                <p class="address">Address: <span style="font-weight: bold;">${user[2].userAddress}</span></p>
+            </div>
+            <div class="card-div">
+                
+            </div>
+            <div class="center">
+                <div class="quantity-price-div">
+                    <p class="quantity">Quantity: <span style="font-weight: bold;">${user[0].userCart.length}</span></p>
+                    <p class="price"></p>
+                </div>
+              </div>
+      
+        `;
+        let  totalCost=0;
+        for (i=0;i<user[0].userCart.length;i++) {
+          totalCost+=Number(user[0].userCart[i].price * user[0].userCart[i].quantity );
+          document.querySelector('.card-div').innerHTML+=`
+          <div class="card">
+                    <div class="card-img"> <img src="images/${user[0].userCart[i].image}" height="120px"> </div>
+                    <div class="card-name-quantity">
+                        <p class="name">Name:  <span style="font-weight: bold;">${user[0].userCart[i].name}</span> </p>
+                        <p class="quantity">Quantity: <span style="font-weight: bold;">${user[0].userCart[i].quantity}</span></p>
+                    </div>
+                    <div class="card-price"><span style="font-weight: 100;margin-right: 2px;">Price: </span>  ${user[0].userCart[i].price *user[0].userCart[i].quantity} </div>
+              </div>
+          `;
+          document.querySelector('.price').innerHTML=`Price: <span style="font-weight: bold;">${totalCost}</span>`
+        }
+      }
+       let darkModeCounter=0;
+          function darkMode() {
+            if (darkModeCounter==0) {activateDarkMode();darkModeCounter=1;}
+            else {deActivateDarkMode();darkModeCounter=0}
+          }
+          function activateDarkMode() {
+            document.querySelector('body').classList.add('darkBody');
+            document.querySelector('.img-div').innerHTML=`<img src="/images/blackbglogo.png" height="80px">`
+          }
+          function deActivateDarkMode() {
+            document.querySelector('body').classList.remove('darkBody');
+            document.querySelector('.img-div').innerHTML=`<img src="/images/whitebglogo.png" height="80px">`
+          }
+      
+    </script>
+</body>
+</html>

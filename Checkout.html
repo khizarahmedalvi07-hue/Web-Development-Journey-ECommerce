@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="images/png" href="images/blackbglogo.png">
+  <title>Checkout</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      transition-duration: 0.5s;
+      
+    }
+    .darkBody {
+      background: rgb(30, 30, 30);
+    color: white;
+    }
+    .navbar {
+      position: fixed;
+      top: 0; left: 0 ; right: 0;
+      height: 120px;
+      background: rgb(37, 37, 37);
+      display: flex;
+      justify-content: space-between;
+    }
+    .navbar .left {
+      display: inline;
+      margin:2vh 0 2vh 2vh;
+      border-radius: 50%;
+      padding: 10px;
+      transition-duration: 0.4s;
+    }
+    .navbar .left:hover   {
+      background: rgba(128, 128, 128, 0.395);
+    }
+    .navbar .right {
+      display: inline;
+      margin: 5vh 3vh 4vh 4vh;
+      border-radius: 50%;
+      padding: 5px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    .navbar .right:hover {
+      background: rgba(128, 128, 128, 0.498);
+    }
+    .mainbody {
+      margin-top: 100px;
+      width: 100%;
+    }
+    .title-div {
+      width: 100%;
+      text-align: center;
+      margin-top: 150px;
+      font-weight: bold;
+      font-size: 50px;
+      color: inherit;
+    }
+    .inputs-div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+
+    }
+    .inputs-div input {
+      margin-bottom: 20px;
+      outline: none;
+      width: 300px;
+      border: none;
+      border-bottom: 1px solid gray;
+      background: transparent;
+      color: inherit;
+      text-align: center;
+      font-weight: bold;
+      padding: 4px;
+    }
+
+    .products-list-div {
+      display: flex;
+       justify-content: center;
+      margin-top: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .product-list {
+      display: flex;
+      width: 100%;
+       flex-direction: column;
+
+    }
+    .product-list-card {
+      border: 1px solid rgba(128, 128, 128, 0.352);
+      width: 100%;
+      display: flex;
+      background: rgba(245, 245, 245, 0.091);
+      flex-direction: row;
+      margin-top: 20px;
+    }
+    .card-quantity {
+      font-weight: 400;
+    }
+    .card-image {
+      width: 10%;
+      border-right: 1px solid gray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+    }
+    .card-image img{
+      height: 6rem;
+      object-fit:contain;
+    }
+    .card-name-quantity {
+      width: 35%;
+      border-right: 1px solid gray;
+      font-weight: bold;
+      padding-top: 5px;
+      padding-left: 2px;
+      text-align: center;
+      text-decoration: underline;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .card-quantity-change {
+      width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* margin: 2%; */
+      padding: 2%;
+      border-right: 1px solid gray;
+    }
+    .card-quantity-change button {
+      margin: 10px 2px 10px 2px;
+      display: flex;
+      vertical-align: center;
+      align-items: center;
+    }
+    .card-price {
+      display: flex;
+      align-items: center;
+      vertical-align: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      font-size: larger;
+      
+    }
+    .bottom-div {
+      background: rgb(37, 37, 37);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 20vh;
+  
+
+    }
+    .bottom-left {
+      margin: 20px;
+      display: inline;
+    }
+    .bottom-right {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .bottom-right button {
+      height: 100%;
+      background: rgb(9, 110, 225);
+      border-radius: 2px;
+      border: none;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-right: 20px;
+      padding: 10px;
+      cursor: pointer;
+      transition-duration: 0.4s;
+    }
+ .bottom-right button:hover {
+  background: rgb(9, 87, 177);
+ }
+ .bottom-right button:active {
+  background: rgb(6, 68, 138);
+ }
+ .popup-div {
+  position: fixed;
+  bottom: 10%;
+  right: 0;left: 0;
+  display: flex;
+  justify-content: center;
+ }
+ .popup {
+  background: red;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  padding: 5px 20px 5px 20px;
+  
+ }
+
+  </style>
+</head>
+<body>
+    <div class="navbar">
+        <div onclick="window.location.href='Homepage.html'" class="left"> <img src="images/blackbglogo.png" height="75px"> </div>
+        <div onclick="darkMode()" class="right"> <img src="images/whitemoon.png" height="40px"> </div>
+    </div>
+
+    <div class="mainbody">
+      <div class="title-div">Check Out</div>
+      <div class="inputs-div">
+        <div style="display: flex;flex-direction: column;">
+          <input class="input-name" placeholder="Name"> 
+          <input class="input-address" placeholder="Address">
+        </div>
+      </div>
+      <div class="products-list-div">
+        <div class="product-list">
+
+              
+              
+          </div>
+      </div>
+        <div class="bottom-div">
+          
+              <!-- <div class="bottom-left">
+                    <div class="quantity">Total Quantity: <span style="font-weight: bold;">40</span></div>  
+                    <div class="total-cost">Total Cost: <span style="font-weight: bold;">100 $</span></div>
+              </div>
+              <div class="bottom-right">
+                  <button>Confirm Order</button>
+              </div>
+            
+        </div> -->
+    </div>
+
+    <div class="popup-div">
+      
+      
+    </div>
+
+        <script>
+          let darkModeCounter=0;
+          function darkMode() {
+            if (darkModeCounter==0) {activateDarkMode();darkModeCounter=1;}
+            else {deActivateDarkMode();darkModeCounter=0}
+          }
+          function activateDarkMode() {
+            document.querySelector('body').classList.add('darkBody');
+          }
+          function deActivateDarkMode() {
+            document.querySelector('body').classList.remove('darkBody');
+          }
+          
+          function removeItem(i) {
+          userCart=JSON.parse(localStorage.getItem("cartProducts"));
+          userCart[i].quantity--;
+          console.log(userCart[i]);
+           if (userCart[i].quantity==0) {userCart.splice(i,1)}
+          localStorage.setItem("cartProducts",JSON.stringify(userCart));
+          renderProducts();
+        }
+        function addItem(i) {
+          userCart=JSON.parse(localStorage.getItem("cartProducts"));
+          userCart[i].quantity++;
+          console.log(userCart[i]);
+           if (userCart[i].quantity==0) {userCart.splice(i,1)}
+          localStorage.setItem("cartProducts",JSON.stringify(userCart));
+          renderProducts();
+        }
+
+          renderProducts()
+          totalCost=0;
+      function renderProducts() {
+        userCart=JSON.parse(localStorage.getItem("cartProducts"));
+         totalCost=0;
+        document.querySelector('.product-list').innerHTML=``;
+        for (i=0;i<userCart.length;i++) {
+          totalCost+=Number( userCart[i].price*userCart[i].quantity);
+          document.querySelector('.product-list').innerHTML+=`
+          <div class="product-list-card">
+                  <div class="card-image"> <img src="images/${userCart[i].image}" > </div>
+                  <div class="card-name-quantity">
+                       <p class="card-name">${userCart[i].name}</p> 
+                      
+                  </div>
+                  <div class="card-quantity-change">
+                      <button onclick="removeItem(${i})">-</button>
+                      <p> ${userCart[i].quantity}  </p>
+                      <button onclick="addItem(${i})">+</button>
+                  </div>
+                  <div class="card-price">
+                      <strong> ${userCart[i].quantity*userCart[i].price} $ </strong>
+                  </div>
+                 
+                  
+              </div>
+          `;
+        }
+        
+        document.querySelector('.bottom-div').innerHTML='';
+        document.querySelector('.bottom-div').innerHTML=`
+       
+          
+              <div class="bottom-left">
+                    <div class="quantity">Total Quantity: <span style="font-weight: bold;">${userCart.length}</span></div>  
+                    <div class="total-cost">Total Cost: <span style="font-weight: bold;">${totalCost} $</span></div>
+              </div>
+              <div class="bottom-right">
+                  <button onclick="confirmOrder()">Confirm Order</button>
+              </div>
+            
+
+        `
+      }
+      function confirmOrder() {
+         let userName=document.querySelector('.input-name').value || "";
+         let userAddress=document.querySelector('.input-address').value || "";
+        console.log(userName)
+        if (userName=="" || userAddress=="") {
+          console.log("Enter Somehting");popup(); window.scrollTo(top);
+          userName.focus
+        }
+        else {
+
+        window.location.href=`Receipt.html`
+         userName=document.querySelector('.input-name').value;
+         userAddress=document.querySelector('.input-address').value;
+        userCart=JSON.parse( localStorage.getItem("cartProducts"));
+        console.log(userCart)
+        user=[{userCart},{userName}, {userAddress},{totalCost}]
+        localStorage.setItem("confirmedCart",JSON.stringify(user))
+      }
+    }
+    function popup() {
+      document.querySelector('.popup-div').innerHTML=``;
+      document.querySelector('.popup-div').innerHTML=`
+        <div class="popup"><p>Enter Name And Address</p></div>
+      `;
+      
+      setTimeout(() => {
+        document.querySelector('.popup-div').innerHTML=``;
+      }, 2000);
+    }
+
+    </script>
+
+</body>
+</html>
