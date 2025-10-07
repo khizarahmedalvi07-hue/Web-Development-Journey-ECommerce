@@ -281,8 +281,10 @@
       function renderProducts() {
         userCart=JSON.parse(localStorage.getItem("cartProducts"));
          totalCost=0;
+         totalQuantity=0;
         document.querySelector('.product-list').innerHTML=``;
         for (i=0;i<userCart.length;i++) {
+          totalQuantity+=userCart[i].quantity;
           totalCost+=Number( userCart[i].price*userCart[i].quantity);
           document.querySelector('.product-list').innerHTML+=`
           <div class="product-list-card">
@@ -310,7 +312,7 @@
        
           
               <div class="bottom-left">
-                    <div class="quantity">Total Quantity: <span style="font-weight: bold;">${userCart.length}</span></div>  
+                    <div class="quantity">Total Quantity: <span style="font-weight: bold;">${totalQuantity}</span></div>  
                     <div class="total-cost">Total Cost: <span style="font-weight: bold;">${totalCost} $</span></div>
               </div>
               <div class="bottom-right">
