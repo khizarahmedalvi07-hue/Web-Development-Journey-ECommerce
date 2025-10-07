@@ -151,7 +151,7 @@
         console.log(user[0].userCart)
         document.querySelector('.receipt-div').innerHTML=`
       
-            <div class="img-div"><img src="/images/whitebglogo.png" height="80px"> </div>
+            <div class="img-div"><img src="images/whitebglogo.png" height="80px"> </div>
             <div class="name-address-div">
                 <p class="name">Name : <span style="font-weight: bold;">${user[1].userName}</span></p>
                 <p class="address">Address: <span style="font-weight: bold;">${user[2].userAddress}</span></p>
@@ -195,13 +195,14 @@
           }
           function activateDarkMode() {
             document.querySelector('body').classList.add('darkBody');
-            document.querySelector('.img-div').innerHTML=`<img src="/images/blackbglogo.png" height="80px">`
+            document.querySelector('.img-div').innerHTML=`<img src="images/blackbglogo.png" height="80px">`
           }
           function deActivateDarkMode() {
             document.querySelector('body').classList.remove('darkBody');
-            document.querySelector('.img-div').innerHTML=`<img src="/images/whitebglogo.png" height="80px">`
+            document.querySelector('.img-div').innerHTML=`<img src="images/whitebglogo.png" height="80px">`
           }
       
     </script>
 </body>
 </html>
+
