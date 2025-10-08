@@ -91,6 +91,7 @@ body {
     .caurosel img {
       width: 100%;
       z-index: -1;
+      transition-duration: 1s;
     }
     .caurosel-men-text {
       position: absolute;
@@ -333,6 +334,13 @@ body {
        background: rgba(99, 99, 99, 0.148);
       border:1px solid gray;
       text-shadow: 5px;
+      transition-duration: 0.8s;
+      cursor: pointer;
+    }
+    .card:hover {
+      margin: -1vh 1vh 1vh 0vh;
+      background: rgba(99, 99, 99, 0.26);
+      padding: 10px;
     }
 
     .cardImage {
@@ -373,6 +381,7 @@ body {
     }
     .cardButton button:hover {
       background: rgb(30, 30, 30);
+      
     }
     .cardButton button:active {
       background: gray;
@@ -405,6 +414,117 @@ body {
       width: fit-content;
       padding: 5px 10px 5px 10px;
     }
+    .product-popup-div {
+      backdrop-filter: blur(5px);
+      background-color: rgba(39, 39, 39, 0.705);
+      position: fixed;
+      
+      top: 0;left: 0; right: 0 ;bottom: 0;
+      display: none;
+    }
+    .products-popup-active {
+      display: block;
+    }
+    .product-popup {
+      position: fixed;
+      transition-duration: 0.4s;
+      top: 18%; bottom: 2vw;
+      background: inherit;
+      left: 10%; right: 10%;
+      background: whitesmoke;
+      color: inherit;
+      border: 2px solid rgba(126, 126, 126, 0.445);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      border-radius: 5px;
+    }
+    .product-popup-dark {
+      background: rgb(30, 30, 30);
+    }
+    .product-popup-dark .right button {
+      background: whitesmoke;
+      color: black;
+    }
+    
+    .left {
+      display: flex;
+      align-items: center;
+      border-right: 1px solid gray;
+      justify-content: center;
+       margin: 1vh;
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+     text-align: center;
+      position: relative;
+      width: 100%;
+     
+    }
+    .product-popup-name {
+      font-size: 40px;
+      padding-left: 10px;
+      margin-bottom: 10px;
+      margin-top: 8vw;
+      margin-bottom: 1vw;
+    }
+    .product-popup-type {
+      padding-left: 10px;
+      color: rgb(49, 49, 49);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .product-popup-price {
+      font-size: 30px;
+      padding-left: 10px;
+      margin-top: 20px;
+    }
+    .product-popup-button {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position:absolute;
+      bottom: 2%;
+      }
+      .product-popup-desc {
+        color: gray;
+        margin: 5%;
+        margin-bottom: 0px;
+      }
+    .product-popup-button button {
+        font-weight: bold;
+        width: 90%;
+        background: rgb(24, 24, 24);
+        color: white;
+        font-family: arial;
+        border: none;
+        height: 50px;
+        border-radius: 5px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+      .product-popup-button button:hover {
+        opacity: 80%;
+      }
+      .product-popup-button button:active {
+        opacity: 65%;
+      }
+      .closeCard {
+        position: absolute;
+        right: 0;
+        background:inherit;
+        filter: invert();
+        font-size: large;
+        margin: 0;
+        padding: 5px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+      }
+      .closeCard:hover {
+        background: maroon;
+        filter: none;
+        color: white;
+      }
+
     @media (max-width:768px) {
       .caurosel-men-text {
        position: absolute;
@@ -432,5 +552,10 @@ body {
      font-family: anton,arial;
       left: 54%;
       text-shadow: 0 0 10px gray;
+    }
+    .left {
+      border: none;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.884);
+      margin: 0 2vh 0 2vh;
     }
     }
