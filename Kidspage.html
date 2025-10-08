@@ -72,6 +72,10 @@
       <div class="popup-div">
         
       </div>
+
+      <div class="product-popup-div">
+        
+      </div>
       <script>
         darkModeCounter=0;
         function darkMode() {
@@ -126,19 +130,25 @@
           name:"Red Shirt",
           image:"menshirt3.png",
           price:70, 
+           type:"Shirt",
+           desc:"A casual red striped button-down shirt featuring soft fabric and a relaxed fit, perfect for effortless everyday style and comfort.",
           quantity:0,
           
         },
         {
           name:"Blue Jacket",
           image:"DarkBlueJacket.png",
+          desc:"A dark blue jacket without a hoodie, featuring a sleek design and comfortable fit, perfect for a polished casual look in any season.",
           price:120,
+           type:"Jacket",
           quantity:0
         },
-        
+       
         {
           name:"Brown Jacket",
           image:"Brownjacket.png",
+          desc:"A sleek brown zip-up jacket crafted for comfort and style, offering a modern casual look that’s perfect for layering in any season.",
+          type:"Jacket",
           price:120,
           quantity:0,
           
@@ -151,7 +161,7 @@
         document.querySelector('.products-grid').innerHTML=``;
         for (i=0;i<allProducts.length;i++) {
           document.querySelector('.products-grid').innerHTML+=`
-          <div class="card">
+          <div onclick="productCard(${i})" class="card">
               <div class="cardImage"> <img src="images/${allProducts[i].image}" height="180px"> </div>
               <div class="cardName"> ${allProducts[i].name} </div>
               <div class="cardPrice">${allProducts[i].price}$</div>
@@ -231,8 +241,15 @@
         
        
        }
-
        cauroselPic()
+       setInterval(() => {
+          cauroselPic2();
+          setTimeout(() => {
+            cauroselPic()
+          }, 5000);
+       }, 10000);
+
+       
        function cauroselPic() {
         if (window.innerWidth<728) {
           document.querySelector('.cauroselPic').innerHTML=`<img src="images/kidsBannerVertical.jpg" width="100%">`
@@ -242,6 +259,16 @@
 
         }
        }
+       function cauroselPic2() {
+        if (window.innerWidth<728) {
+          document.querySelector('.cauroselPic').innerHTML=`<img src="images/menBannerVertical.jpg" width="100%">`
+        }
+        else {
+          document.querySelector('.cauroselPic').innerHTML=`<img src="images/menBannerHorizontal.jpg" width="100%">`
+
+        }
+       }
+
        function popup() {
         
         document.querySelector('.popup-div').innerHTML=`<div class="popup">Add At-Least One Item</div>`
@@ -249,8 +276,41 @@
            document.querySelector('.popup-div').innerHTML=``
         }, 2000);
        }
+       function popup() {
+        
+        document.querySelector('.popup-div').innerHTML=`<div class="popup">Add At-Least One Item</div>`
+        setTimeout(() => {
+           document.querySelector('.popup-div').innerHTML=``
+        }, 2000);
+       }
+
+       function productCard(i) {
+        document.querySelector('.product-popup-div').classList.add("products-popup-active");
+        document.querySelector(".product-popup-div").innerHTML=`
+        <div class="product-popup">
+        <div class="left">
+            <div class="product-popup-img">
+                <img src="images/${allProducts[i].image}" height="250vh">
+            </div>
+        </div>
+        <div class="right">
+            <div class="product-popup-name">${allProducts[i].name}</div>
+            <div class="product-popup-type">${allProducts[i].type}</div>
+            <div class="product-popup-desc">
+              ${allProducts[i].desc}
+            </div>
+            <div class="product-popup-price">$ ${allProducts[i].price}</div>
+            <div class="product-popup-button"> <button onclick="addToCart(${i})">Add To Cart</button> </div>
+        </div>
+        <div onclick="removeProductCard()" class="closeCard">X</div>
+        </div>
+        `
+       }
+       function removeProductCard() {
+        document.querySelector(".product-popup-div").innerHTML=``
+         document.querySelector('.product-popup-div').classList.remove("products-popup-active");
+       }
       </script>
       
 </body>
-
 </html>
