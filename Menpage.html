@@ -72,10 +72,6 @@
       <div class="popup-div">
         
       </div>
-
-      <div class="product-popup-div">
-        
-      </div>
       <script>
         darkModeCounter=0;
         function darkMode() {
@@ -89,7 +85,6 @@
         document.querySelector('.cart-bar').classList.add("dark-cart-bar");
         document.querySelector('.side-buttons').classList.add("darksidebar-buttons");
         document.querySelector('.nav-middle').innerHTML=`<img onclick="window.location.href='Homepage.html'" src="images/blackbglogo.png" style="z-index: 5;" height="80px">`
-        document.querySelector('.product-popup').classList.add('product-popup-dark')
        }
        function deActivateDarkMode() {
         document.querySelector('body').classList.remove('darkBody');
@@ -97,8 +92,7 @@
         document.querySelector('.side-bar').classList.remove("sidebarDark");
          document.querySelector('.cart-bar').classList.remove("dark-cart-bar");
         document.querySelector('.side-buttons').classList.remove("darksidebar-buttons");
-        document.querySelector('.nav-middle').innerHTML=`<img onclick="window.location.href='Homepage.html'" src="images/whitebglogo.png" style="z-index: 5;" height="80px">`;
-         document.querySelector('.product-popup').classList.remove('product-popup-dark')
+        document.querySelector('.nav-middle').innerHTML=`<img onclick="window.location.href='Homepage.html'" src="images/whitebglogo.png" style="z-index: 5;" height="80px">`
        }
 
 
@@ -131,35 +125,29 @@
         {
           name:"Blue Shirt",
           image:"menshirt2.png",
-          desc:" A casual blue half-sleeve button-down shirt with a relaxed fit and soft fabric, perfect for everyday comfort and effortless style.",
           price:60,
-          quantity:0,
-          type:"Shirt"
+          quantity:0
         },
         {
           name:"Blue Jeans",
           image:"Bluejeans.png",
           price:80,
-          desc:"Classic blue jeans with a comfortable fit and durable fabric, designed for everyday wear and effortless casual style that never goes out of trend.",
           quantity:0,
-          type:"Pants"
+          
         },
         {
           name:"Red Shirt",
           image:"menshirt3.png",
           price:70, 
           quantity:0,
-          desc:"A casual red striped button-down shirt featuring soft fabric and a relaxed fit, perfect for effortless everyday style and comfort.",
-          type:"Shirt"
           
         },
         {
           name:"Brown Jacket",
           image:"Brownjacket.png",
           price:120,
-          desc:"A sleek brown zip-up jacket crafted for comfort and style, offering a modern casual look that’s perfect for layering in any season.",
           quantity:0,
-          type:"Jacket",
+          
         }
         
        ];
@@ -169,7 +157,7 @@
         document.querySelector('.products-grid').innerHTML=``;
         for (i=0;i<allProducts.length;i++) {
           document.querySelector('.products-grid').innerHTML+=`
-          <div onclick="productCard(${i})"  class="card">
+          <div class="card">
               <div class="cardImage"> <img src="images/${allProducts[i].image}" height="180px"> </div>
               <div class="cardName"> ${allProducts[i].name} </div>
               <div class="cardPrice">${allProducts[i].price}$</div>
@@ -266,31 +254,6 @@
         setTimeout(() => {
            document.querySelector('.popup-div').innerHTML=``
         }, 2000);
-       }
-
-       function productCard(i) {
-        document.querySelector('.product-popup-div').classList.add("products-popup-active");
-        document.querySelector(".product-popup-div").innerHTML=`
-        <div class="product-popup">
-        <div class="left">
-            <div class="product-popup-img">
-                <img src="images/${allProducts[i].image}" height="250vh">
-            </div>
-        </div>
-        <div class="right">
-            <div class="product-popup-name">${allProducts[i].name}</div>
-            <div class="product-popup-type">${allProducts[i].type}</div>
-            <div class="product-popup-desc">${allProducts[i].desc}</div>
-            <div class="product-popup-price">$ ${allProducts[i].price}</div>
-            <div class="product-popup-button"> <button onclick="addToCart(${i})">Add To Cart</button> </div>
-        </div>
-        <div onclick="removeProductCard()" class="closeCard">X</div>
-        </div>
-        `
-       }
-       function removeProductCard() {
-        document.querySelector(".product-popup-div").innerHTML=``
-         document.querySelector('.product-popup-div').classList.remove("products-popup-active");
        }
       </script>
       
